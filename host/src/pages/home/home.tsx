@@ -16,7 +16,7 @@ const Home: React.FC = () => {
         color="primary"
         size="large"
         component={Link}
-        to="/verify"
+        to="/listings"
       >
         Verify Your Listing
       </Button>
