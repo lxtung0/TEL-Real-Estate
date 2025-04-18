@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import VerifyPage from "./pages/verifyPage/verifyPage";
+import Apply from "./pages/apply/apply"
 
 function App() {
   return (
@@ -23,9 +24,12 @@ function App() {
             <Button color="inherit" component={Link} to="/">
               Home
             </Button>
+            {/*
             <Button color="inherit" component={Link} to="/listings">
               Listings
             </Button>
+            */}
+            
           </Toolbar>
         </AppBar>
 
@@ -36,6 +40,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/listings" element={<ListingsPage />} />
               <Route path="/verify" element={<VerifyPage/>} />
+              <Route path="/apply" element={<Apply/>} />
             </Routes>
           </Container>
         </Box>
