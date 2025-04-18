@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -9,6 +10,7 @@ import {
   Container,
   Tooltip,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccessibleIcon from "@mui/icons-material/Accessible";
@@ -132,6 +134,9 @@ const ListingsPage: React.FC = () => {
                     </Tooltip>
                   )}
                 </Box>
+                <Button component={Link} to="/apply">
+                  Apply 
+                </Button>
               </CardContent>
             </Card>
           </Grid>
