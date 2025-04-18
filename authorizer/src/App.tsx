@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/home/home";
-import ListingsPage from "./pages/listings/listings";
 import {
   AppBar,
   Box,
@@ -18,13 +17,13 @@ function App() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              Retail App
+              Authorizer App
             </Typography>
             <Button color="inherit" component={Link} to="/">
               Home
             </Button>
-            <Button color="inherit" component={Link} to="/listings">
-              Listings
+            <Button color="inherit" component={Link} to="/verify">
+              Verify
             </Button>
           </Toolbar>
         </AppBar>
@@ -34,7 +33,6 @@ function App() {
           <Container maxWidth={false} sx={{ mt: 4 }}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/listings" element={<ListingsPage />} />
               <Route path="/verify" element={<VerifyPage/>} />
             </Routes>
           </Container>
