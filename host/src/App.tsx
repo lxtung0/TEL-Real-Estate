@@ -23,7 +23,7 @@ function App() {
           <Container maxWidth="lg">
             <Toolbar disableGutters>
               <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                Retail App
+                Surestep
               </Typography>
               <Button color="inherit" component={Link} to="/">
                 Home

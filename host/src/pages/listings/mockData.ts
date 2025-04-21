@@ -7,7 +7,7 @@ export const mockVerifyListings: UserListing[] = [
       title: "Cozy Apartment in the City",
       description: "A beautiful and cozy apartment located in the heart of the city.",
       price: 1200,
-      imageUrl: "/images/listing1.avif",
+      imageUrl: "/images/cozyApartment.jpg",
       status: "pending",
       startDate: "2025-04-17",
     },
