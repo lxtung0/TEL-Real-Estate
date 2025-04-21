@@ -11,6 +11,7 @@ import {
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
 import { VerifyListing } from "./types";
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   listing: VerifyListing;
@@ -18,9 +19,11 @@ type Props = {
 };
 
 const VerifyCard: React.FC<Props> = ({ listing, onStatusChange }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Card
+        onClick={() => navigate(`/scan/${listing.id}`)}
         sx={{
           height: 420,
           width: 350,
