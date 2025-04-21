@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import VerifyPage from "./pages/verifyPage/verifyPage";
+import VerifyScanPage from "./pages/verifyPage/verifyScan";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/verify" element={<VerifyPage/>} />
+              <Route path="/scan/:scanId" element={<VerifyScanPage />} />
             </Routes>
           </Container>
         </Box>
