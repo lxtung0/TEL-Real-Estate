@@ -35,7 +35,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/verify" element={<VerifyPage/>} />
-              <Route path="/scan/:scanId" element={<VerifyScanPage />} />
+              <Route path="/scan/:id" element={<VerifyScanPage />} />
             </Routes>
           </Container>
         </Box>

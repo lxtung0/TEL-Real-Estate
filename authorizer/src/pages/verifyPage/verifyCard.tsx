@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
-import { VerifyListing } from "./types";
+import { VerifyListing } from "../../../../types";
 import { useNavigate } from 'react-router-dom';
 
 type Props = {

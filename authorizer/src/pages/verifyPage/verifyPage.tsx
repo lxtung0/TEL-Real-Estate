@@ -12,8 +12,8 @@ import {
   MenuItem,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { VerifyListing } from "./types";
-import { mockVerifyListings } from "./mockData";
+import { VerifyListing } from "../../../../types";
+import { mockVerifyListings } from "../../../../mockData";
 import VerifyCard from "./verifyCard";
 
 const VerifyPage: React.FC = () => {

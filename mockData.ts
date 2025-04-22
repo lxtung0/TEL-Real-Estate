@@ -1,5 +1,4 @@
-import { VerifyListing } from "./types";
-
+import {VerifyListing} from './types'
 
 export const mockVerifyListings: VerifyListing[] = [
     {
