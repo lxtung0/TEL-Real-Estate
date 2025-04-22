@@ -1,27 +1,28 @@
-// src/verifyScan.tsx
-
-import { Box, Typography, Button, IconButton, Tooltip } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
-import ClearIcon from '@mui/icons-material/Clear';
-import { mockVerifyListings } from '../../../../mockData';
-import { VerifyListing } from '../../../../types';
-
+import { Box, Typography, Button, IconButton, Tooltip } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import ClearIcon from "@mui/icons-material/Clear";
+import { VerifyListing } from "../../../../types";
+import { fetchListings, updateListingStatus } from "../../network/listings";
 export default function VerifyScanPage() {
   const viewerRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+    const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+  const [listings, setListings] = useState<VerifyListing[]>([]);
+  const listing = listings.find((l) => l.id === Number(id));
+  const [status, setStatus] = useState<VerifyListing["status"]>("pending");
 
-  // find the right listing
-  const listing = mockVerifyListings.find(l => l.id === Number(id));
-
-  // local status state for approve/decline
-  const [status, setStatus] = useState<VerifyListing['status']>(
-    listing?.status ?? 'pending'
-  );
-
-  // render the 3D model (static for now)
+  useEffect(() => {
+    fetchListings()
+      .then((all) => {
+        setListings(all);
+        const found = all.find((l: { id: number }) => l.id === Number(id));
+        if (found) setStatus(found.status);
+      })
+      .catch((err) => console.error("Error loading listings:", err));
+  }, [id]);
+  
   useEffect(() => {
     if (viewerRef.current) {
       viewerRef.current.innerHTML = `
@@ -38,7 +39,20 @@ export default function VerifyScanPage() {
         ></model-viewer>
       `;
     }
-  }, []);
+  }, [listings]);
+  const handleDecision = async (newStatus: "approved" | "declined") => {
+    if (!listing) return;
+    setStatus(newStatus);
+    try {
+      await updateListingStatus(listing.id, newStatus);
+      setListings((prev) =>
+        prev.map((l) => (l.id === listing.id ? { ...l, status: newStatus } : l))
+      );
+    } catch (err) {
+      console.error("Failed status change", err);
+      setStatus("pending");
+    }
+  };
 
   if (!listing) {
     return (
@@ -50,10 +64,6 @@ export default function VerifyScanPage() {
       </Box>
     );
   }
-
-  const handleDecision = (newStatus: 'approved' | 'declined') => {
-    setStatus(newStatus);
-  };
 
   return (
     <Box sx={{ p: 4 }}>
@@ -72,17 +82,17 @@ export default function VerifyScanPage() {
           {listing.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          ${listing.price} / month — Listed on{' '}
+          ${listing.price} / month — Listed on{" "}
           {new Date(listing.startDate).toLocaleDateString()}
         </Typography>
       </Box>
 
       <Box display="flex" justifyContent="center" gap={2} mt={4}>
-        {status === 'pending' ? (
+        {status === "pending" ? (
           <>
             <Tooltip title="Approve Listing">
               <IconButton
-                onClick={() => handleDecision('approved')}
+                onClick={() => handleDecision("approved")}
                 color="success"
               >
                 <AddIcon />
@@ -90,7 +100,7 @@ export default function VerifyScanPage() {
             </Tooltip>
             <Tooltip title="Decline Listing">
               <IconButton
-                onClick={() => handleDecision('declined')}
+                onClick={() => handleDecision("declined")}
                 color="error"
               >
                 <ClearIcon />
@@ -99,12 +109,12 @@ export default function VerifyScanPage() {
           </>
         ) : (
           <Typography>
-            Status:{' '}
+            Status:{" "}
             <Box
               component="span"
               sx={{
                 fontWeight: 600,
-                color: status === 'approved' ? 'green' : 'red',
+                color: status === "approved" ? "green" : "red",
               }}
             >
               {status.toUpperCase()}

@@ -23,7 +23,7 @@
     "description": "A sleek and modern studio apartment.",
     "price": 900,
     "imageUrl": "/images/modernStudio.jpg",
-    "status": "declined",
+    "status": "pending",
     "startDate": "2025-04-15"
   },
   {
@@ -32,7 +32,7 @@
     "description": "Modern loft with incredible skyline views and rooftop access.",
     "price": 1800,
     "imageUrl": "/images/loft.jpg",
-    "status": "declined",
+    "status": "pending",
     "startDate": "2025-04-14"
   },
   {
@@ -41,7 +41,7 @@
     "description": "A small but charming bungalow in a quiet neighborhood.",
     "price": 1100,
     "imageUrl": "/images/charming.webp",
-    "status": "approved",
+    "status": "pending",
     "startDate": "2025-04-13"
   },
   {
@@ -50,7 +50,7 @@
     "description": "Fully furnished condo with high-end amenities and services.",
     "price": 3200,
     "imageUrl": "/images/luxury.jpg",
-    "status": "declined",
+    "status": "pending",
     "startDate": "2025-04-12"
   },
   {
@@ -59,7 +59,7 @@
     "description": "Vintage-style home with original woodwork and charm.",
     "price": 2000,
     "imageUrl": "/images/historic.webp",
-    "status": "declined",
+    "status": "pending",
     "startDate": "2025-04-11"
   },
   {
@@ -68,7 +68,7 @@
     "description": "Wake up to ocean views in this beachfront apartment.",
     "price": 2800,
     "imageUrl": "/images/beachfront.avif",
-    "status": "approved",
+    "status": "pending",
     "startDate": "2025-04-10"
   }
 ]
