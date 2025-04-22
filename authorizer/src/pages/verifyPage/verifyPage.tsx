@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Grid,
@@ -13,43 +14,51 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { VerifyListing } from "../../../../types";
-import { mockVerifyListings } from "../../../../mockData";
 import VerifyCard from "./verifyCard";
+import { fetchListings, updateListingStatus } from "../../network/listings";
 
 const VerifyPage: React.FC = () => {
-  const [listings, setListings] =
-    React.useState<VerifyListing[]>(mockVerifyListings);
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const [statusFilter, setStatusFilter] = React.useState<
+  const [listings, setListings] = useState<VerifyListing[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<
     "all" | "pending" | "approved" | "declined"
   >("all");
-  const [sortOrder, setSortOrder] = React.useState<"newest" | "oldest">(
-    "newest"
-  );
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
-  const handleStatusChange = (id: number, status: "approved" | "declined") => {
+  useEffect(() => {
+    fetchListings()
+      .then(setListings)
+      .catch((err) => console.error("Error loading listings:", err));
+  }, []);
+
+  const handleDecision = async (
+    id: number,
+    newStatus: "approved" | "declined"
+  ) => {
     setListings((prev) =>
-      prev.map((listing) =>
-        listing.id === id ? { ...listing, status } : listing
-      )
+      prev.map((l) => (l.id === id ? { ...l, status: newStatus } : l))
     );
+  
+    try {
+      await updateListingStatus(id, newStatus);
+    } catch (err) {
+      console.error("Failed to update status:", err);
+    }
   };
-  const filteredListings = listings
-    .filter((listing) =>
-      statusFilter === "all" ? true : listing.status === statusFilter
-    )
+
+  const filtered = listings
+    .filter((l) => (statusFilter === "all" ? true : l.status === statusFilter))
     .filter(
-      (listing) =>
-        listing.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        listing.description.toLowerCase().includes(searchQuery.toLowerCase())
+      (l) =>
+        l.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        l.description.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .sort((a, b) => {
-      const dateA = new Date(a.startDate);
-      const dateB = new Date(b.startDate);
-      return sortOrder === "newest"
-        ? dateB.getTime() - dateA.getTime()
-        : dateA.getTime() - dateB.getTime();
+      const da = new Date(a.startDate).getTime();
+      const db = new Date(b.startDate).getTime();
+      return sortOrder === "newest" ? db - da : da - db;
     });
+
   return (
     <Container sx={{ py: 6 }}>
       <Typography variant="h4" gutterBottom>
@@ -68,7 +77,7 @@ const VerifyPage: React.FC = () => {
       >
         <Tabs
           value={statusFilter}
-          onChange={(_, newVal) => setStatusFilter(newVal)}
+          onChange={(_, v) => setStatusFilter(v)}
           textColor="primary"
         >
           <Tab label="All" value="all" />
@@ -78,9 +87,9 @@ const VerifyPage: React.FC = () => {
         </Tabs>
 
         <TextField
-          variant="outlined"
           placeholder="Search listings..."
           size="small"
+          variant="outlined"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           InputProps={{
@@ -93,9 +102,11 @@ const VerifyPage: React.FC = () => {
         />
 
         <Select
-          value={sortOrder}
           size="small"
-          onChange={(e) => setSortOrder(e.target.value as "newest" | "oldest")}
+          value={sortOrder}
+          onChange={(e) =>
+            setSortOrder(e.target.value as "newest" | "oldest")
+          }
         >
           <MenuItem value="newest">Newest</MenuItem>
           <MenuItem value="oldest">Oldest</MenuItem>
@@ -103,9 +114,9 @@ const VerifyPage: React.FC = () => {
       </Box>
 
       <Grid container spacing={4}>
-        {filteredListings.map((listing) => (
+        {filtered.map((listing) => (
           <Grid key={listing.id}>
-            <VerifyCard listing={listing} onStatusChange={handleStatusChange} />
+            <VerifyCard listing={listing} onStatusChange={handleDecision} />
           </Grid>
         ))}
       </Grid>

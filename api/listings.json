@@ -1,8 +1,74 @@
 [
-    {
-      "id": 1,
-      "title": "Living Room",
-      "status": "pending",
-      "modelPath": "/models/4_21_2025.glb"
-    }
-  ]
+  {
+    "id": 1,
+    "title": "Cozy Apartment in the City",
+    "description": "A beautiful and cozy apartment located in the heart of the city.",
+    "price": 1200,
+    "imageUrl": "/images/listing1.avif",
+    "status": "pending",
+    "startDate": "2025-04-17"
+  },
+  {
+    "id": 2,
+    "title": "Spacious Suburban Home",
+    "description": "A large home with a backyard, perfect for families.",
+    "price": 2500,
+    "imageUrl": "/images/spaciousHome.jpg",
+    "status": "pending",
+    "startDate": "2025-04-16"
+  },
+  {
+    "id": 3,
+    "title": "Modern Studio",
+    "description": "A sleek and modern studio apartment.",
+    "price": 900,
+    "imageUrl": "/images/modernStudio.jpg",
+    "status": "declined",
+    "startDate": "2025-04-15"
+  },
+  {
+    "id": 4,
+    "title": "Loft with City Views",
+    "description": "Modern loft with incredible skyline views and rooftop access.",
+    "price": 1800,
+    "imageUrl": "/images/loft.jpg",
+    "status": "declined",
+    "startDate": "2025-04-14"
+  },
+  {
+    "id": 5,
+    "title": "Charming Bungalow",
+    "description": "A small but charming bungalow in a quiet neighborhood.",
+    "price": 1100,
+    "imageUrl": "/images/charming.webp",
+    "status": "approved",
+    "startDate": "2025-04-13"
+  },
+  {
+    "id": 6,
+    "title": "Luxury High-Rise Condo",
+    "description": "Fully furnished condo with high-end amenities and services.",
+    "price": 3200,
+    "imageUrl": "/images/luxury.jpg",
+    "status": "declined",
+    "startDate": "2025-04-12"
+  },
+  {
+    "id": 7,
+    "title": "Historic Home with Character",
+    "description": "Vintage-style home with original woodwork and charm.",
+    "price": 2000,
+    "imageUrl": "/images/historic.webp",
+    "status": "declined",
+    "startDate": "2025-04-11"
+  },
+  {
+    "id": 8,
+    "title": "Beachfront Getaway",
+    "description": "Wake up to ocean views in this beachfront apartment.",
+    "price": 2800,
+    "imageUrl": "/images/beachfront.avif",
+    "status": "approved",
+    "startDate": "2025-04-10"
+  }
+]

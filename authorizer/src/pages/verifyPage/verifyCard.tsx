@@ -11,7 +11,7 @@ import {
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
 import { VerifyListing } from "../../../../types";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   listing: VerifyListing;
@@ -23,7 +23,6 @@ const VerifyCard: React.FC<Props> = ({ listing, onStatusChange }) => {
   return (
     <>
       <Card
-        onClick={() => navigate(`/scan/${listing.id}`)}
         sx={{
           height: 420,
           width: 350,
@@ -33,6 +32,7 @@ const VerifyCard: React.FC<Props> = ({ listing, onStatusChange }) => {
         }}
       >
         <CardMedia
+          onClick={() => navigate(`/scan/${listing.id}`)}
           component="img"
           image={listing.imageUrl}
           alt={listing.title}
@@ -54,9 +54,14 @@ const VerifyCard: React.FC<Props> = ({ listing, onStatusChange }) => {
               ${listing.price} / month
             </Typography>
           </Box>
-          <Typography alignItems="end" variant="caption" color="text.secondary" mt={1}>
-              Listed on {new Date(listing.startDate).toLocaleDateString()}
-            </Typography>
+          <Typography
+            alignItems="end"
+            variant="caption"
+            color="text.secondary"
+            mt={1}
+          >
+            Listed on {new Date(listing.startDate).toLocaleDateString()}
+          </Typography>
         </CardContent>
 
         <Box
