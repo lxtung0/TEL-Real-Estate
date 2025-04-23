@@ -16,9 +16,10 @@ function App() {
     <Router>
       <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <AppBar position="static">
-          <Toolbar>
+        <Container maxWidth="lg">
+          <Toolbar disableGutters>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              Authorizer App
+              SureStep
             </Typography>
             <Button color="inherit" component={Link} to="/">
               Home
@@ -27,6 +28,7 @@ function App() {
               Verify
             </Button>
           </Toolbar>
+          </Container>
         </AppBar>
 
         {/* Page Content */}

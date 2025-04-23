@@ -5,7 +5,7 @@
     "description": "A beautiful and cozy apartment located in the heart of the city.",
     "price": 1200,
     "imageUrl": "/images/listing1.avif",
-    "status": "pending",
+    "status": "approved",
     "startDate": "2025-04-17"
   },
   {
