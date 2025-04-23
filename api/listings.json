@@ -14,7 +14,7 @@
     "description": "A large home with a backyard, perfect for families.",
     "price": 2500,
     "imageUrl": "/images/spaciousHome.jpg",
-    "status": "pending",
+    "status": "declined",
     "startDate": "2025-04-16"
   },
   {

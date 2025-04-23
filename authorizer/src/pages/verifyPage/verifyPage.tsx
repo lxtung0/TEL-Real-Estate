@@ -29,7 +29,7 @@ const VerifyPage: React.FC = () => {
     fetchListings()
       .then(setListings)
       .catch((err) => console.error("Error loading listings:", err));
-  }, [listings]);
+  }, []);
 
   const handleDecision = async (
     id: number,
