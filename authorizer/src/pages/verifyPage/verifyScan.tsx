@@ -1,4 +1,4 @@
-import { Box, Typography, Button, IconButton, Tooltip } from "@mui/material";
+import { Box, Typography, Button, IconButton, Tooltip, Container } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
@@ -66,6 +66,7 @@ export default function VerifyScanPage() {
   }
 
   return (
+    <Container>
     <Box sx={{ p: 4 }}>
       <Button onClick={() => navigate(-1)} sx={{ mb: 2 }}>
         ← Back to listings
@@ -123,5 +124,6 @@ export default function VerifyScanPage() {
         )}
       </Box>
     </Box>
+    </Container>
   );
 }

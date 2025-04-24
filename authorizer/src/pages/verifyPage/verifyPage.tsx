@@ -60,7 +60,7 @@ const VerifyPage: React.FC = () => {
     });
 
   return (
-    <Container sx={{ py: 6 }}>
+    <Container sx={{ paddingBottom: 6 }}>
       <Typography variant="h4" gutterBottom>
         Verify Listings
       </Typography>
